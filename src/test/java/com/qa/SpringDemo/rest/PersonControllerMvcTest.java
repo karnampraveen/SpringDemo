@@ -33,13 +33,13 @@ public class PersonControllerMvcTest {
 
     @Test
     void testCreate() throws Exception {
-        Person newPerson = new Person(0,"Someone",50,"nothing");
+        Person newPerson = new Person(3,"Someone",50,"nothing");
         String newPersonAsJson = this.mapper.writeValueAsString(newPerson);
         RequestBuilder mockRequest = MockMvcRequestBuilders.post("/create").contentType(MediaType.APPLICATION_JSON).content(newPersonAsJson);
 
         ResultMatcher checkStatus = MockMvcResultMatchers.status().isCreated();
 
-        Person createdPerson = new Person(1,"Someone",50,"nothing");
+        Person createdPerson = new Person(3,"Someone",50,"nothing");
         String createdPersonAsJson = this.mapper.writeValueAsString(createdPerson);
 
         ResultMatcher checkBody = MockMvcResultMatchers.content().json(createdPersonAsJson);
@@ -49,7 +49,7 @@ public class PersonControllerMvcTest {
 
     @Test
     void testGetById() throws Exception {
-        RequestBuilder mockReq = MockMvcRequestBuilders.get("/person/1");
+        RequestBuilder mockReq = MockMvcRequestBuilders.get("/person/2");
 
         ResultMatcher checkStatus = MockMvcResultMatchers.status().isOk();
         Person getPerson = new Person(2,"Guess Who?",99,"Guess What?");
